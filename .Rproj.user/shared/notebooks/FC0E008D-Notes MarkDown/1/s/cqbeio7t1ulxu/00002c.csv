@@ -1,0 +1,4 @@
+"0",""
+"0","enrollment.vec <- as.numeric(as.vector(UMASS$ENROLLMENT))"
+"0","enrollment.ts <- ts(enrollment.vec, frequency = 1, start = c(1984, 1))"
+"0","ts.plot(enrollment.ts, xlab = ""Year"", ylab = ""Total Students"", main = ""Enrollment"")"

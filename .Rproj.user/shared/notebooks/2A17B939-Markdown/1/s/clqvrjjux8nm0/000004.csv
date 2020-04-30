@@ -1,0 +1,3 @@
+"0","netPosNets <- subset(NetPosition, NETS == ""1"")"
+"0","netPosTotal<- netPosNets[1,2:6]"
+"0","netPosTotal <- netPosTotal / inflation"

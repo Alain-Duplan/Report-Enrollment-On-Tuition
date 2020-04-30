@@ -1,0 +1,5 @@
+"0","sv.vec <- scan(""C:/Users/alain/OneDrive/Documents/Info 248/week of march 24/Data Files-20200324/souvenirts.csv"")"
+"2","Read 84 items
+"
+"0","sv.ts <- ts(sv.vec, frequency=12, start=c(1987,1))"
+"0","plot(sv.ts)"

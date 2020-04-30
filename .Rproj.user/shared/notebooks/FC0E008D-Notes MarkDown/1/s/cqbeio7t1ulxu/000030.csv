@@ -1,0 +1,4 @@
+"0",""
+"0","acceptance.vec <- na.omit(as.numeric(as.vector(UMASS$ACCEPTANCE)))"
+"0","acceptance.ts <- ts(acceptance.vec, frequency = 1, start = c(1987, 1))"
+"0","ts.plot(acceptance.ts, xlab = ""Year"", ylab = ""Total Students"", main = ""Acceptance"")"

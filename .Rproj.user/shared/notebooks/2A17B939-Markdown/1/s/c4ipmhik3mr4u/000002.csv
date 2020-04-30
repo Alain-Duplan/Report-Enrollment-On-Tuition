@@ -1,0 +1,2 @@
+"0","NetPosition.pred <- HoltWinters(netPosTotal.ts, beta = FALSE, gamma = FALSE)"
+"0","plot(NetPosition.pred)"

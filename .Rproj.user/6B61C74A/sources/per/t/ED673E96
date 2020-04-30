@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1587580095915.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "155774494",
+    "id" : "ED673E96",
+    "lastKnownWriteTime" : 1587580187,
+    "last_content_update" : 1587580187719,
+    "path" : "C:/Users/alain/Downloads/Econ452/Final Project/Presentation.Rmd",
+    "project_path" : "Presentation.Rmd",
+    "properties" : {
+        "cursorPosition" : "3,19",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

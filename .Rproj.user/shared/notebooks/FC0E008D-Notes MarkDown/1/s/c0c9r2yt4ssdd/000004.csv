@@ -1,0 +1,3 @@
+"0",""
+"0","admrate.pred2 <- forecast:::forecast.HoltWinters(admrate.pred, h=1)"
+"0","forecast:::plot.forecast(admrate.pred2)"

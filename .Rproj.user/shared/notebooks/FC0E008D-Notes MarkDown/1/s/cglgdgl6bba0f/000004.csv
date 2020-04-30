@@ -1,0 +1,3 @@
+"0",""
+"0","room.board.pred2 <- forecast:::forecast.HoltWinters(room.board.pred, h=1)"
+"0","forecast:::plot.forecast(room.board.pred2)"

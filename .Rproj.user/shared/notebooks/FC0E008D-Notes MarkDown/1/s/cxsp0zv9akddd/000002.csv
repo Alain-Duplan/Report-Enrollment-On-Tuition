@@ -1,0 +1,6 @@
+"0","#making prediction models"
+"0","library(forecast)"
+"0",""
+"0","state.in.pred2 <- forecast:::forecast.HoltWinters(state.in.pred, h=1)"
+"0","forecast:::plot.forecast(state.in.pred2)"
+"0",""

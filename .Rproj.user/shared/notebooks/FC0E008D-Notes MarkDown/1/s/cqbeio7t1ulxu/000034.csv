@@ -1,0 +1,4 @@
+"0",""
+"0","accrate.vec <- na.omit(as.numeric(as.vector(UMASS$ACCRATE)))"
+"0","accrate.ts <- ts(accrate.vec, frequency = 1, start = c(1987, 1))"
+"0","ts.plot(accrate.ts, xlab = ""Year"", ylab = ""Rate"", main = ""Acceptance Rate"")"

@@ -1,0 +1,4 @@
+"0",""
+"0","room.board.vec <- as.numeric(as.vector(UMASS$`ROOM & BOARD ADJ`))"
+"0","room.board.ts <- ts(room.board.vec, frequency = 1, start = c(1984, 1))"
+"0","ts.plot(room.board.ts, xlab = ""Year"", ylab = ""Cost in $"", main = ""Room & Board Costs"")"

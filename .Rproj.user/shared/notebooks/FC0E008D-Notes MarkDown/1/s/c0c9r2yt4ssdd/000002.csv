@@ -1,0 +1,4 @@
+"0","#for admission rate"
+"0",""
+"0","admrate.pred <- HoltWinters(admrate.ts, beta = FALSE, gamma = FALSE)"
+"0","plot(admrate.pred)"

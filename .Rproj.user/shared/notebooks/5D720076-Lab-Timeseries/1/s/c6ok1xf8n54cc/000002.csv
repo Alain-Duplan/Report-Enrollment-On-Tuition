@@ -1,0 +1,5 @@
+"0","amherst.weather <- read.table(""C:/Users/alain/OneDrive/Documents/Info 248/week of march 24/Data Files-20200324/AmherstWeatherApril.tsv"", sep =""\t"", header = TRUE)"
+"0","precip.vec <- amherst.weather$TotalPrecip"
+"0","precip.vec <- na.omit(precip.vec)"
+"0","precip.ts <- ts(data = precip.vec, frequency = 1, start = c(1990,1))"
+"0","plot(precip.ts)"

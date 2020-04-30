@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1587506975759.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "245A0982",
+    "lastKnownWriteTime" : 5572397747021967209,
+    "last_content_update" : 1587506975759,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "60FDBDAA",
+        "caption" : "UMASS",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=UMASS&cache_key=60FDBDAA",
+        "displayedObservations" : "36",
+        "environment" : "",
+        "expression" : "UMASS",
+        "object" : "UMASS",
+        "preview" : "0",
+        "totalObservations" : "36",
+        "variables" : "9"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

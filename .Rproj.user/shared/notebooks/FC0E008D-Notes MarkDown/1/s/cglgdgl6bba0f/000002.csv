@@ -1,0 +1,4 @@
+"0","#for out of state"
+"0",""
+"0","room.board.pred <- HoltWinters(room.board.ts, beta = FALSE, gamma = FALSE)"
+"0","plot(room.board.pred)"

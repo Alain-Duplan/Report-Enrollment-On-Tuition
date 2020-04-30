@@ -1,0 +1,3 @@
+"0",""
+"0","birth.ts10 <- SMA(birth.ts1,n=10)"
+"0","plot.ts(birth.ts10, ylab="""", xlab="""")"

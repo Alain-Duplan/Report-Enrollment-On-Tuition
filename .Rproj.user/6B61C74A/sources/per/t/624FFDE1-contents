@@ -1,0 +1,213 @@
+---
+title: "Notes"
+author: "Alain Duplan"
+date: "4/21/2020"
+output: html_document
+---
+
+## Data is a collection of reports made by Umass that can be found on:
+
+https://www.umass.edu/oir/admissions-and-enrollment-reports
+https://www.umass.edu/oir/sites/default/files/publications/factsheets/student_charges/FS_chg_01.pdf
+
+```{r}
+library(readxl)
+UMASS <- read_excel("UMass Enrollment.xlsx")
+head(UMASS)
+```
+
+## Data Set of fees and enrollment numbers for undergraduate students attending umass. In-state and out-state are nets of tuition and fees. Room and board including base meal plan and room fees(normal double). Enrollment, applications, acceptance and admission are for undergraduates in the fall semester.
+
+```{r}
+# add an acceptance & admission rate colum
+UMASS$ACCRATE <- UMASS$ACCEPTANCE / UMASS$APPLICATIONS 
+UMASS$ADMRATE <- UMASS$ADMISISSION / UMASS$ACCEPTANCE
+head(UMASS)
+```
+
+```{r}
+#before continueing lets deflate anything variables having to do with money
+#make a vector containg inflation rate with base year of 1984
+#Data was found using Bureau of Labor Statistics
+
+inflation <- c(1.0 ,1.04, 1.06, 1.09, 1.14, 1.19, 1.26, 1.31, 1.35, 1.39, 1.43, 1.47, 1.51, 1.54, 1.57, 1.60, 1.66, 1.70, 1.73, 1.77, 1.82, 1.88, 1.94, 2.0, 2.07, 2.06, 2.10, 2.16, 2.21, 2.24, 2.28, 2.28, 2.31, 2.36, 2.42, 2.46)
+
+UMASS$INFLATION <- inflation
+UMASS$`IN-STATE-ADJ` <- UMASS$`IN-STATE` / UMASS$INFLATION
+UMASS$`OUT-STATE-ADJ` <- UMASS$`OUT-STATE` / UMASS$INFLATION
+UMASS$`ROOM & BOARD ADJ` <- UMASS$`ROOM & BOARD` / UMASS$INFLATION
+
+
+```
+
+```{r}
+#lets make some time series
+
+state.in.vec <- as.numeric(as.vector(UMASS$`IN-STATE-ADJ`))
+state.in.ts <- ts(state.in.vec, frequency = 1, start = c(1984, 1))
+ts.plot(state.in.ts, xlab = "Year", ylab = "Cost in $", main = "Adjusted In-State Costs")
+
+state.out.vec <- as.numeric(as.vector(UMASS$`OUT-STATE-ADJ`))
+state.out.ts <- ts(state.out.vec, frequency = 1, start = c(1984, 1))
+ts.plot(state.out.ts, xlab = "Year", ylab = "Cost in $", main = "Adjusted Out-of-State Costs")
+
+room.board.vec <- as.numeric(as.vector(UMASS$`ROOM & BOARD ADJ`))
+room.board.ts <- ts(room.board.vec, frequency = 1, start = c(1984, 1))
+ts.plot(room.board.ts, xlab = "Year", ylab = "Cost in $", main = "Room & Board Costs")
+
+enrollment.vec <- as.numeric(as.vector(UMASS$ENROLLMENT))
+enrollment.ts <- ts(enrollment.vec, frequency = 1, start = c(1984, 1))
+ts.plot(enrollment.ts, xlab = "Year", ylab = "Total Students", main = "Enrollment")
+
+applications.vec <- na.omit(as.numeric(as.vector(UMASS$APPLICATIONS)))
+applications.ts <- ts(applications.vec, frequency = 1, start = c(1987, 1))
+ts.plot(applications.ts, xlab = "Year", ylab = "Total Students", main = "Applicants")
+
+acceptance.vec <- na.omit(as.numeric(as.vector(UMASS$ACCEPTANCE)))
+acceptance.ts <- ts(acceptance.vec, frequency = 1, start = c(1987, 1))
+ts.plot(acceptance.ts, xlab = "Year", ylab = "Total Students", main = "Acceptance")
+
+admission.vec <- na.omit(as.numeric(as.vector(UMASS$ADMISISSION)))
+admission.ts <- ts(admission.vec, frequency = 1, start = c(1987, 1))
+ts.plot(admission.ts, xlab = "Year", ylab = "Total Students", main = "Admission")
+
+accrate.vec <- na.omit(as.numeric(as.vector(UMASS$ACCRATE)))
+accrate.ts <- ts(accrate.vec, frequency = 1, start = c(1987, 1))
+ts.plot(accrate.ts, xlab = "Year", ylab = "Rate", main = "Acceptance Rate")
+
+admrate.vec <- na.omit(as.numeric(as.vector(UMASS$ADMRATE)))
+admrate.ts <- ts(admrate.vec, frequency = 1, start = c(1987, 1))
+ts.plot(admrate.ts, xlab = "Year", ylab = "Rate", main = "Admission Rate")
+```
+
+#at a quick glance none of these graphs show any seasons but the do show some trend. Also around 1995-1997 UMass seems to have a considerable dip in popularity, more on that later
+
+```{r}
+#lets do some smoothing 
+library(TTR)
+
+
+state.in.pred <- HoltWinters(state.in.ts, beta = FALSE, gamma = FALSE)
+plot(state.in.pred)
+```
+
+```{r}
+#making prediction models
+library(forecast)
+
+state.in.pred2 <- forecast:::forecast.HoltWinters(state.in.pred, h=1)
+forecast:::plot.forecast(state.in.pred2)
+
+```
+
+```{r}
+#lets look at the residuals to see if we can use this model for other graphs
+plot.ts(state.in.pred2$residuals)
+hist(state.in.pred2$residuals)
+```
+#seems random but again 1995-1997 is an outlier as well as some skewness, not a good sign and something is causing this
+  
+#les run this for the other variables to find anyhting interesting  
+```{r}
+#for out of state
+
+state.out.pred <- HoltWinters(state.out.ts, beta = FALSE, gamma = FALSE)
+plot(state.out.pred)
+
+state.out.pred2 <- forecast:::forecast.HoltWinters(state.out.pred, h=1)
+forecast:::plot.forecast(state.out.pred2)
+
+plot.ts(state.out.pred2$residuals)
+hist(state.out.pred2$residuals)
+```
+
+```{r}
+#for out of state
+
+room.board.pred <- HoltWinters(room.board.ts, beta = FALSE, gamma = FALSE)
+plot(room.board.pred)
+
+room.board.pred2 <- forecast:::forecast.HoltWinters(room.board.pred, h=1)
+forecast:::plot.forecast(room.board.pred2)
+
+plot.ts(room.board.pred2$residuals)
+hist(room.board.pred2$residuals)
+```
+
+```{r}
+#for enrollment
+
+enrollment.pred <- HoltWinters(enrollment.ts, beta = FALSE, gamma = FALSE)
+plot(enrollment.pred)
+
+enrollment.pred2 <- forecast:::forecast.HoltWinters(enrollment.pred, h=1)
+forecast:::plot.forecast(enrollment.pred2)
+
+plot.ts(enrollment.pred2$residuals)
+hist(enrollment.pred2$residuals)
+```
+
+```{r}
+#for applications
+
+applications.pred <- HoltWinters(applications.ts, beta = FALSE, gamma = FALSE)
+plot(applications.pred)
+
+applications.pred2 <- forecast:::forecast.HoltWinters(applications.pred, h=1)
+forecast:::plot.forecast(applications.pred2)
+
+plot.ts(applications.pred2$residuals)
+hist(applications.pred2$residuals)
+```
+
+```{r}
+#for acceptance
+
+acceptance.pred <- HoltWinters(acceptance.ts, beta = FALSE, gamma = FALSE)
+plot(acceptance.pred)
+
+acceptance.pred2 <- forecast:::forecast.HoltWinters(acceptance.pred, h=1)
+forecast:::plot.forecast(acceptance.pred2)
+
+plot.ts(acceptance.pred2$residuals)
+hist(acceptance.pred2$residuals)
+```
+```{r}
+#for admission
+
+admission.pred <- HoltWinters(admission.ts, beta = FALSE, gamma = FALSE)
+plot(admission.pred)
+
+admission.pred2 <- forecast:::forecast.HoltWinters(admission.pred, h=1)
+forecast:::plot.forecast(admission.pred2)
+
+plot.ts(admission.pred2$residuals)
+hist(admission.pred2$residuals)
+```
+
+```{r}
+#for acceptance rate
+
+accrate.pred <- HoltWinters(accrate.ts, beta = FALSE, gamma = FALSE)
+plot(accrate.pred)
+
+accrate.pred2 <- forecast:::forecast.HoltWinters(accrate.pred, h=1)
+forecast:::plot.forecast(accrate.pred2)
+
+plot.ts(accrate.pred2$residuals)
+hist(accrate.pred2$residuals)
+```
+
+```{r}
+#for admission rate
+
+admrate.pred <- HoltWinters(admrate.ts, beta = FALSE, gamma = FALSE)
+plot(admrate.pred)
+
+admrate.pred2 <- forecast:::forecast.HoltWinters(admrate.pred, h=1)
+forecast:::plot.forecast(admrate.pred2)
+
+plot.ts(admrate.pred2$residuals)
+hist(admrate.pred2$residuals)
+```
+

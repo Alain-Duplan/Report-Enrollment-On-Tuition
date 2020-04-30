@@ -1,0 +1,4 @@
+"0",""
+"0","state.out.vec <- as.numeric(as.vector(UMASS$`OUT-STATE-ADJ`))"
+"0","state.out.ts <- ts(state.out.vec, frequency = 1, start = c(1984, 1))"
+"0","ts.plot(state.out.ts, xlab = ""Year"", ylab = ""Cost in $"", main = ""Adjusted Out-of-State Costs"")"

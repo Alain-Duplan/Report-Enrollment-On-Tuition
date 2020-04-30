@@ -1,0 +1,8 @@
+"0","library(readxl)"
+"0","library(TTR)"
+"0","library(forecast)"
+"0",""
+"0","CashFlows <- read_excel(""UMass Balance sheets.xlsx"", sheet = 1)"
+"0","RevenuesExpenses <- read_excel(""UMass Balance sheets.xlsx"", sheet = 2)"
+"0","NetPosition <- read_excel(""UMass Balance sheets.xlsx"", sheet = 3)"
+"0","inflation <- c(1, 1.01, 1.03, 1.06, 1.08)"

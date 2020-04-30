@@ -1,0 +1,2 @@
+"0","NetPosition.pred2 <- forecast:::forecast.HoltWinters(NetPosition.pred, h=1)"
+"0","forecast:::plot.forecast(NetPosition.pred2)"

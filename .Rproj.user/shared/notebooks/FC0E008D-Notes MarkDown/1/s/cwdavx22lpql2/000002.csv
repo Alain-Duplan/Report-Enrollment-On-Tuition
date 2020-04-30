@@ -1,0 +1,2 @@
+"0","#lets look at the residuals to see if we can use this model for other graphs"
+"0","plot.ts(state.in.pred2$residuals)"

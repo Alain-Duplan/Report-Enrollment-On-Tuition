@@ -1,0 +1,4 @@
+"0","# add an acceptance & admission rate colum"
+"0","UMASS$ACCRATE <- UMASS$ACCEPTANCE / UMASS$APPLICATIONS "
+"0","UMASS$ADMRATE <- UMASS$ADMISISSION / UMASS$ACCEPTANCE"
+"0","head(UMASS)"

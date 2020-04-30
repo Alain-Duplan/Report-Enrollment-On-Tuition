@@ -1,0 +1,4 @@
+"0","netPosTotal.vec <- as.numeric(as.vector(netPosTotal))"
+"0","netPosTotal.vec <- rev(netPosTotal.vec)"
+"0","netPosTotal.ts <-ts(netPosTotal.vec, frequency = 1, start = c(2015,1))"
+"0","ts.plot(netPosTotal.ts)"

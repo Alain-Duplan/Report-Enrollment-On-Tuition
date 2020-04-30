@@ -1,0 +1,4 @@
+"0",""
+"0","admrate.vec <- na.omit(as.numeric(as.vector(UMASS$ADMRATE)))"
+"0","admrate.ts <- ts(admrate.vec, frequency = 1, start = c(1987, 1))"
+"0","ts.plot(admrate.ts, xlab = ""Year"", ylab = ""Rate"", main = ""Admission Rate"")"

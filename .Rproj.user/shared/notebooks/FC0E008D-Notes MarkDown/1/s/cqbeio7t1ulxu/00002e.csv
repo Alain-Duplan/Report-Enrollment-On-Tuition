@@ -1,0 +1,4 @@
+"0",""
+"0","applications.vec <- na.omit(as.numeric(as.vector(UMASS$APPLICATIONS)))"
+"0","applications.ts <- ts(applications.vec, frequency = 1, start = c(1987, 1))"
+"0","ts.plot(applications.ts, xlab = ""Year"", ylab = ""Total Students"", main = ""Applicants"")"

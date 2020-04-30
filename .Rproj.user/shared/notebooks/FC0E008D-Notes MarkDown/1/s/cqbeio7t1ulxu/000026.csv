@@ -1,0 +1,5 @@
+"0","#lets make some time series"
+"0",""
+"0","state.in.vec <- as.numeric(as.vector(UMASS$`IN-STATE-ADJ`))"
+"0","state.in.ts <- ts(state.in.vec, frequency = 1, start = c(1984, 1))"
+"0","ts.plot(state.in.ts, xlab = ""Year"", ylab = ""Cost in $"", main = ""Adjusted In-State Costs"")"

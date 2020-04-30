@@ -1,0 +1,4 @@
+"0","#for out of state"
+"0",""
+"0","state.out.pred <- HoltWinters(state.out.ts, beta = FALSE, gamma = FALSE)"
+"0","plot(state.out.pred)"

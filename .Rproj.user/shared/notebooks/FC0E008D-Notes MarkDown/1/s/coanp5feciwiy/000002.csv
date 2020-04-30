@@ -1,0 +1,6 @@
+"0","#lets do some smoothing "
+"0","library(TTR)"
+"0",""
+"0",""
+"0","state.in.pred <- HoltWinters(state.in.ts, beta = FALSE, gamma = FALSE)"
+"0","plot(state.in.pred)"
